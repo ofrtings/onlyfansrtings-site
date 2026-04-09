@@ -270,7 +270,7 @@
           <button class="pill">Premium chat</button>
           <button class="pill">High value</button>
         </div>
-        <div class="review-grid">
+        <div class="review-grid" id="review-grid">
           <article class="card">
             <div class="card-top">
               <div style="display:flex;gap:1rem;align-items:center;">
@@ -486,5 +486,112 @@
       no.addEventListener('click',()=>{window.location.href='https://www.google.com';});
     })();
   </script>
+  <script>
+  // 1) Our creator data list: start with 5 sample creators
+  const creators = [
+    {
+      id: 'ava-luxe',
+      name: 'Ava Luxe',
+      tagline: 'Editorial glam • daily updates',
+      pricePerMonth: '$9.99 / month',
+      postsPerWeek: '4–5 posts / week',
+      tags: ['$9.99 sub', 'Trial live', 'Fast replies'],
+      editorialScore: 9.2,
+      lastUpdated: '2d ago'
+    },
+    {
+      id: 'sable-k',
+      name: 'Sable K.',
+      tagline: 'Boudoir aesthetic • premium drops',
+      pricePerMonth: '$14.99 / month',
+      postsPerWeek: '3–4 posts / week',
+      tags: ['$14.99 sub', 'Bundle offers', 'Collector tier'],
+      editorialScore: 8.8,
+      lastUpdated: '4d ago'
+    },
+    {
+      id: 'nina-vale',
+      name: 'Nina Vale',
+      tagline: 'Soft editorial • custom content',
+      pricePerMonth: '$7.99 / month',
+      postsPerWeek: '3–5 posts / week',
+      tags: ['$7.99 sub', 'Custom menu', 'Trial available'],
+      editorialScore: 8.4,
+      lastUpdated: '1w ago'
+    },
+    {
+      id: 'lena-noir',
+      name: 'Lena Noir',
+      tagline: 'Moody alt • curated shoots',
+      pricePerMonth: '$11.99 / month',
+      postsPerWeek: '3 posts / week',
+      tags: ['$11.99 sub', 'Alt aesthetic', 'Consistent'],
+      editorialScore: 8.9,
+      lastUpdated: '3d ago'
+    },
+    {
+      id: 'iris-v',
+      name: 'Iris V.',
+      tagline: 'Lifestyle • behind-the-scenes focus',
+      pricePerMonth: '$6.99 / month',
+      postsPerWeek: '2–3 posts / week',
+      tags: ['$6.99 sub', 'Value-focused', 'Chat friendly'],
+      editorialScore: 8.1,
+      lastUpdated: '6d ago'
+    }
+  ];
+
+  // 2) Function to render cards into the review grid
+  function renderCreatorCards() {
+    const grid = document.getElementById('review-grid');
+    if (!grid) return;
+
+    // Clear any static cards
+    grid.innerHTML = '';
+
+    creators.forEach((creator) => {
+      const card = document.createElement('article');
+      card.className = 'card';
+
+      card.innerHTML = `
+        <div class="card-top">
+          <div style="display:flex;gap:1rem;align-items:center;">
+            <div class="avatar">${creator.name.split(' ')[0][0]}${creator.name.split(' ')[1] ? creator.name.split(' ')[1][0] : ''}</div>
+            <div>
+              <h3 style="font-size:var(--text-lg);font-family:var(--font-body);font-weight:800;">
+                ${creator.name}
+              </h3>
+              <p class="muted">${creator.tagline}</p>
+            </div>
+          </div>
+          <span class="score-badge">${creator.editorialScore.toFixed(1)}</span>
+        </div>
+        <p>
+          <!-- Short summary placeholder; you can customize per creator later -->
+          This is a curated profile entry with an editorial score of ${creator.editorialScore.toFixed(
+            1
+          )} and a focus on ${creator.tagline.toLowerCase()}.
+        </p>
+        <div class="tag-row">
+          ${creator.tags
+            .map(
+              (tag) =>
+                `<span class="tag">${tag}</span>`
+            )
+            .join('')}
+        </div>
+        <div class="meta-row">
+          <span>Last updated ${creator.lastUpdated}</span>
+          <a href="creator-detail.html?id=${encodeURIComponent(creator.id)}">View detail →</a>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+  }
+
+  // 3) Run after the page has loaded
+  document.addEventListener('DOMContentLoaded', renderCreatorCards);
+</script>
 </body>
 </html>
