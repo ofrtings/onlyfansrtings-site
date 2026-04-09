@@ -122,22 +122,23 @@
           <div class="avatar">AL</div>
           <div>
             <p class="eyebrow">Creator</p>
-            <h1>Ava Luxe</h1>
-            <p class="body-text" style="margin-top:var(--space-2);max-width:40ch;">Polished, gallery-led profile with a consistent posting rhythm and clearly framed value for subscribers.</p>
+            <h1 id="creator-name">Ava Luxe</h1>
+            <p class="body-text" id="creator-tagline" style="margin-top:var(--space-2);max-width:40ch;">
+  Polished, gallery-led profile with a consistent posting rhythm and clearly framed value for subscribers.</p>
             <div class="hero-meta">
-              <span class="chip">From $9.99 / month</span>
-              <span class="chip">4–5 posts / week</span>
-              <span class="chip">Glam • Editorial • Alt</span>
+<span class="chip" id="creator-price">From $9.99 / month</span>
+<span class="chip" id="creator-posts">4–5 posts / week</span>
+<span class="chip" id="creator-tags-chip">Glam • Editorial • Alt</span>
             </div>
           </div>
         </div>
         <div class="score-stack">
           <div>
             <p class="score-label">Editorial score</p>
-            <div class="score-main"><strong>87</strong><span>/ 100</span></div>
+            <div class="score-main"><strong id="creator-score">87</strong><span>/ 100</span></div>
           </div>
           <span class="score-tag">Strongly recommended</span>
-          <span class="community-chip">Community 8.3 / 10 • 124 ratings</span>
+          <span class="community-chip" id="creator-community">Community 8.3 / 10 • 124 ratings</span>
         </div>
       </div>
       <div class="ad-slot"><!-- AD SLOT: creator header banner --><span>Ad placement — creator header banner</span><small>Replace this block with your adult-network header ad snippet.</small></div>
@@ -302,5 +303,104 @@
       t.addEventListener('click',()=>{d=d==='dark'?'light':'dark';r.setAttribute('data-theme',d);render();});
     })();
   </script>
+  <script>
+  // Same core creator list, but with extra fields for the detail page
+  const creators = [
+    {
+      id: 'ava-luxe',
+      name: 'Ava Luxe',
+      taglineFull: 'Polished, gallery-led profile with a consistent posting rhythm and clearly framed value for subscribers.',
+      taglineShort: 'Editorial glam • daily updates',
+      pricePerMonth: '$9.99 / month',
+      postsPerWeek: '4–5 posts / week',
+      tagsLine: 'Glam • Editorial • Alt',
+      editorialScore: 87,
+      communityScore: 8.3,
+      communityCount: 124
+    },
+    {
+      id: 'sable-k',
+      name: 'Sable K.',
+      taglineFull: 'Premium, boudoir-leaning content with an emphasis on stylized sets and periodic high-effort drops.',
+      taglineShort: 'Boudoir aesthetic • premium drops',
+      pricePerMonth: '$14.99 / month',
+      postsPerWeek: '3–4 posts / week',
+      tagsLine: 'Boudoir • Premium • Collector tier',
+      editorialScore: 88,
+      communityScore: 8.0,
+      communityCount: 96
+    },
+    {
+      id: 'nina-vale',
+      name: 'Nina Vale',
+      taglineFull: 'Soft editorial presentation, with a focus on custom requests and intimate-feeling updates.',
+      taglineShort: 'Soft editorial • custom content',
+      pricePerMonth: '$7.99 / month',
+      postsPerWeek: '3–5 posts / week',
+      tagsLine: 'Soft • Custom • Value-forward',
+      editorialScore: 84,
+      communityScore: 7.9,
+      communityCount: 88
+    },
+    {
+      id: 'lena-noir',
+      name: 'Lena Noir',
+      taglineFull: 'Moody, alt-leaning sets with a curated visual identity and slower, deliberate posting cadence.',
+      taglineShort: 'Moody alt • curated shoots',
+      pricePerMonth: '$11.99 / month',
+      postsPerWeek: '3 posts / week',
+      tagsLine: 'Alt • Curated • Editorial',
+      editorialScore: 89,
+      communityScore: 8.5,
+      communityCount: 73
+    },
+    {
+      id: 'iris-v',
+      name: 'Iris V.',
+      taglineFull: 'Lifestyle-oriented content with behind-the-scenes moments and approachable price positioning.',
+      taglineShort: 'Lifestyle • behind-the-scenes focus',
+      pricePerMonth: '$6.99 / month',
+      postsPerWeek: '2–3 posts / week',
+      tagsLine: 'Lifestyle • Value • Chat-friendly',
+      editorialScore: 81,
+      communityScore: 7.8,
+      communityCount: 52
+    }
+  ];
+
+  function loadCreatorFromQuery() {
+    // Read ?id=... from the URL using URLSearchParams
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id'); // e.g., 'ava-luxe'
+    // URLSearchParams.get() returns the first value for a given key, or null if missing. [web:134][web:138][web:150]
+
+    // Find matching creator; if not found, fall back to the first one
+    let creator = creators.find((c) => c.id === id);
+    if (!creator) {
+      creator = creators[0];
+    }
+
+    // Fill basic hero fields
+    const nameEl = document.getElementById('creator-name');
+    const taglineEl = document.getElementById('creator-tagline');
+    const priceEl = document.getElementById('creator-price');
+    const postsEl = document.getElementById('creator-posts');
+    const tagsChipEl = document.getElementById('creator-tags-chip');
+    const scoreEl = document.getElementById('creator-score');
+    const communityEl = document.getElementById('creator-community');
+
+    if (nameEl) nameEl.textContent = creator.name;
+    if (taglineEl) taglineEl.textContent = creator.taglineFull;
+    if (priceEl) priceEl.textContent = `From ${creator.pricePerMonth}`;
+    if (postsEl) postsEl.textContent = creator.postsPerWeek;
+    if (tagsChipEl) tagsChipEl.textContent = creator.tagsLine;
+    if (scoreEl) scoreEl.textContent = creator.editorialScore.toString();
+    if (communityEl) {
+      communityEl.textContent = `Community ${creator.communityScore.toFixed(1)} / 10 • ${creator.communityCount} ratings`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadCreatorFromQuery);
+</script>
 </body>
 </html>
