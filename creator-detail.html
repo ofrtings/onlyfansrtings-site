@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creator Detail — onlyfansrtings.com</title>
+  <meta name="description" content="Creator detail template with editorial score, breakdown, community rating, offers, gallery, and verification notes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root,[data-theme="light"]{
+      --text-xs:clamp(.75rem,.7rem + .25vw,.875rem);
+      --text-sm:clamp(.875rem,.8rem + .35vw,1rem);
+      --text-base:clamp(1rem,.95rem + .25vw,1.125rem);
+      --text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);
+      --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);
+      --text-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);
+      --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;
+      --color-bg:#f6f2ee;--color-surface:#fbf8f5;--color-surface-2:#fffdfa;--color-surface-offset:#efe7e1;
+      --color-border:rgba(40,27,24,.12);--color-divider:rgba(40,27,24,.08);
+      --color-text:#211917;--color-text-muted:#6f625d;--color-text-faint:#a69690;--color-text-inverse:#fff9f5;
+      --color-primary:#8a5162;--color-primary-hover:#744454;--color-accent:#d3a687;--color-success:#47664a;
+      --shadow-sm:0 2px 8px rgba(42,20,18,.06);--shadow-md:0 12px 30px rgba(42,20,18,.1);
+      --radius-sm:.5rem;--radius-md:.85rem;--radius-lg:1.2rem;--radius-xl:1.75rem;--radius-full:999px;
+      --font-display:'Instrument Serif',Georgia,serif;--font-body:'Manrope',system-ui,sans-serif;
+      --content-default:1180px;--transition-interactive:180ms cubic-bezier(.16,1,.3,1)
+    }
+    [data-theme="dark"]{
+      --color-bg:#120f10;--color-surface:#191516;--color-surface-2:#211c1d;--color-surface-offset:#2a2325;
+      --color-border:rgba(255,241,235,.12);--color-divider:rgba(255,241,235,.08);
+      --color-text:#f5ece7;--color-text-muted:#b9aaa5;--color-text-faint:#7e6f6b;--color-text-inverse:#1a1415;
+      --color-primary:#d28fa7;--color-primary-hover:#e7a3bb;--color-accent:#f3c5a2;--color-success:#8bb78f;
+      --shadow-sm:0 2px 10px rgba(0,0,0,.24);--shadow-md:0 14px 40px rgba(0,0,0,.34)
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{text-size-adjust:none;scroll-behavior:smooth;scroll-padding-top:4.5rem}
+    body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);line-height:1.6;background:radial-gradient(circle at top right,rgba(210,143,167,.12),transparent 28%),radial-gradient(circle at 20% 0,rgba(243,197,162,.08),transparent 22%),var(--color-bg);color:var(--color-text)}
+    img,svg{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    button,input{font:inherit;color:inherit}
+    button{cursor:pointer;border:none;background:none}
+    :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+    .container{width:min(calc(100% - 2rem),var(--content-default));margin-inline:auto}
+    .eyebrow{font-size:var(--text-xs);letter-spacing:.16em;text-transform:uppercase;color:var(--color-text-muted)}
+    header{position:sticky;top:0;z-index:40;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--color-bg) 78%,transparent);border-bottom:1px solid var(--color-divider)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:var(--space-4) 0;gap:var(--space-4)}
+    .brand{display:flex;align-items:center;gap:var(--space-3);font-weight:800;letter-spacing:.02em}
+    .brand svg{width:2rem;height:2rem;color:var(--color-primary)}
+    .brand span{display:flex;flex-direction:column;line-height:1.05}
+    .brand small{font-size:var(--text-xs);color:var(--color-text-muted)}
+    .toggle{display:grid;place-items:center;width:44px;height:44px;border-radius:var(--radius-full);border:1px solid var(--color-border);background:var(--color-surface)}
+    main{padding-block:var(--space-10)}
+    h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1}
+    h1{font-size:var(--text-2xl);letter-spacing:-.04em}
+    h2{font-size:var(--text-xl)}
+    h3{font-size:var(--text-lg)}
+    .page-grid{display:grid;grid-template-columns:1.7fr 1.1fr;gap:var(--space-8)}
+    .panel{background:linear-gradient(180deg,color-mix(in srgb,var(--color-surface-2) 88%,transparent),var(--color-surface));border-radius:var(--radius-xl);border:1px solid var(--color-border);box-shadow:var(--shadow-sm);padding:var(--space-6)}
+    .hero-panel{margin-bottom:var(--space-8)}
+    .hero-top{display:flex;justify-content:space-between;gap:var(--space-6);align-items:flex-start}
+    .hero-main{display:flex;gap:var(--space-4)}
+    .avatar{width:3.25rem;height:3.25rem;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,rgba(210,143,167,.28),rgba(243,197,162,.18));font-weight:800}
+    .hero-meta{margin-top:var(--space-4);display:flex;flex-wrap:wrap;gap:var(--space-3);font-size:var(--text-sm);color:var(--color-text-muted)}
+    .chip{padding:.4rem .75rem;border-radius:var(--radius-full);border:1px solid var(--color-border);background:var(--color-surface);font-size:var(--text-xs)}
+    .score-stack{display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-3)}
+    .score-main{display:flex;align-items:flex-end;gap:var(--space-2)}
+    .score-main strong{font-size:clamp(2.5rem,4vw,3.5rem);font-family:var(--font-display)}
+    .score-main span{font-size:var(--text-sm);color:var(--color-text-muted);padding-bottom:.5rem}
+    .score-label{font-size:var(--text-xs);letter-spacing:.15em;text-transform:uppercase;color:var(--color-text-muted)}
+    .score-tag{padding:.35rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-primary) 20%,var(--color-surface));font-size:var(--text-xs)}
+    .community-chip{padding:.35rem .75rem;border-radius:var(--radius-full);border:1px solid var(--color-border);font-size:var(--text-xs)}
+    .section{margin-bottom:var(--space-8)}
+    .section-head{display:flex;justify-content:space-between;gap:var(--space-5);align-items:flex-end;margin-bottom:var(--space-4)}
+    .section-head p{color:var(--color-text-muted);max-width:46ch;font-size:var(--text-sm)}
+    .criteria-list{display:grid;gap:var(--space-3)}
+    .criterion{display:grid;grid-template-columns:120px 1fr 48px;gap:var(--space-3);align-items:center;font-size:var(--text-sm)}
+    .bar{height:8px;border-radius:999px;background:var(--color-surface-offset);overflow:hidden}
+    .bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--color-primary),var(--color-accent))}
+    .body-text{color:var(--color-text-muted);max-width:60ch;font-size:var(--text-sm)}
+    .body-text + .body-text{margin-top:var(--space-3)}
+    .pill-row{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-3);font-size:var(--text-sm)}
+    .pill{padding:.45rem .8rem;border-radius:var(--radius-full);background:var(--color-surface-offset);color:var(--color-text-muted)}
+    .dist-bars{margin-top:var(--space-3);display:grid;gap:.45rem;font-size:var(--text-xs)}
+    .dist-row{display:grid;grid-template-columns:36px 1fr 40px;gap:.5rem;align-items:center}
+    .dist-track{height:6px;border-radius:999px;background:var(--color-surface-offset);overflow:hidden}
+    .dist-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--color-success),var(--color-accent))}
+    .offer-list{display:grid;gap:var(--space-3);font-size:var(--text-sm)}
+    .offer-item{padding:var(--space-3);border-radius:var(--radius-lg);border:1px dashed var(--color-border);background:color-mix(in srgb,var(--color-surface) 80%,transparent)}
+    .gallery-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);margin-top:var(--space-4)}
+    .thumb{border-radius:var(--radius-lg);padding:var(--space-4);min-height:140px;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.55)),radial-gradient(circle at 15% 15%,rgba(210,143,167,.35),transparent 22%),radial-gradient(circle at 80% 0,rgba(243,197,162,.28),transparent 24%),linear-gradient(135deg,#3a2a30,#171214 70%);color:#f9e6dc;font-size:var(--text-sm);display:flex;flex-direction:column;justify-content:space-between}
+    .meta-grid{display:grid;gap:var(--space-3);font-size:var(--text-sm);color:var(--color-text-muted)}
+    /* Ad slots */
+    .ad-slot{border-radius:var(--radius-xl);border:1px dashed var(--color-border);background:color-mix(in srgb,var(--color-surface) 80%,transparent);padding:var(--space-4);text-align:center;color:var(--color-text-muted);font-size:var(--text-sm);box-shadow:none;margin-block:var(--space-4)}
+    .ad-slot small{display:block;font-size:var(--text-xs);margin-top:var(--space-2)}
+    footer{margin-top:var(--space-10);padding-block:var(--space-8);border-top:1px solid var(--color-divider);font-size:var(--text-sm);color:var(--color-text-faint)}
+    @media(max-width:880px){.page-grid{grid-template-columns:1fr;gap:var(--space-6)}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <a class="brand" href="creator-reviews.html" aria-label="Back to index">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M15 18.5C15 14.9 17.9 12 21.5 12H42.5C46.1 12 49 14.9 49 18.5V45.5C49 49.1 46.1 52 42.5 52H21.5C17.9 52 15 49.1 15 45.5V18.5Z" stroke="currentColor" stroke-width="3"/>
+          <path d="M24 24H40" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <path d="M24 32H40" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <path d="M24 40H33" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="44" cy="44" r="7" fill="currentColor"/>
+        </svg>
+        <span>onlyfansrtings.com<small>creator detail template</small></span>
+      </a>
+      <button class="toggle" type="button" data-theme-toggle aria-label="Switch theme"></button>
+    </div>
+  </header>
+
+  <main>
+    <div class="container hero-panel panel">
+      <div class="hero-top">
+        <div class="hero-main">
+          <div class="avatar">AL</div>
+          <div>
+            <p class="eyebrow">Creator</p>
+            <h1>Ava Luxe</h1>
+            <p class="body-text" style="margin-top:var(--space-2);max-width:40ch;">Polished, gallery-led profile with a consistent posting rhythm and clearly framed value for subscribers.</p>
+            <div class="hero-meta">
+              <span class="chip">From $9.99 / month</span>
+              <span class="chip">4–5 posts / week</span>
+              <span class="chip">Glam • Editorial • Alt</span>
+            </div>
+          </div>
+        </div>
+        <div class="score-stack">
+          <div>
+            <p class="score-label">Editorial score</p>
+            <div class="score-main"><strong>87</strong><span>/ 100</span></div>
+          </div>
+          <span class="score-tag">Strongly recommended</span>
+          <span class="community-chip">Community 8.3 / 10 • 124 ratings</span>
+        </div>
+      </div>
+      <div class="ad-slot"><!-- AD SLOT: creator header banner --><span>Ad placement — creator header banner</span><small>Replace this block with your adult-network header ad snippet.</small></div>
+    </div>
+
+    <div class="container page-grid">
+      <section>
+        <div class="section">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Breakdown</p>
+              <h2>Editorial criteria</h2>
+            </div>
+            <p>Each score reflects a standardized internal scorecard. Criteria are rated on a 1–10 scale and combined into this 0–100 editorial score.</p>
+          </div>
+          <div class="panel" style="padding:var(--space-5)">
+            <div class="criteria-list">
+              <div class="criterion"><span>Value</span><div class="bar"><i style="width:91%"></i></div><strong>9.1</strong></div>
+              <div class="criterion"><span>Consistency</span><div class="bar"><i style="width:88%"></i></div><strong>8.8</strong></div>
+              <div class="criterion"><span>Responsiveness</span><div class="bar"><i style="width:81%"></i></div><strong>8.1</strong></div>
+              <div class="criterion"><span>Originality</span><div class="bar"><i style="width:90%"></i></div><strong>9.0</strong></div>
+              <div class="criterion"><span>Offer quality</span><div class="bar"><i style="width:84%"></i></div><strong>8.4</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Editorial review</p>
+              <h2>Why this score</h2>
+            </div>
+          </div>
+          <div class="panel" style="padding:var(--space-5)">
+            <p class="body-text"><strong>Summary:</strong> This profile combines a clear visual identity with a reliable posting rhythm and well-framed subscription value, earning a high editorial score.</p>
+            <p class="body-text">Value is strong thanks to frequent gallery updates and transparent pricing; subscribers know what to expect before committing. Consistency and originality both land in the “very good” range, reflecting a feed that feels curated rather than random.</p>
+            <p class="body-text">Responsiveness is solid but not the defining strength, and offer quality could rise further as trial periods and bundles are refined over time.</p>
+          </div>
+        </div>
+
+        <div class="ad-slot"><!-- AD SLOT: mid-page in-article --><span>Ad placement — mid-page in-article</span><small>Use for an in-article or native-style unit between editorial content blocks.</small></div>
+
+        <div class="section">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Community</p>
+              <h2>Subscriber rating</h2>
+            </div>
+          </div>
+          <div class="panel" style="padding:var(--space-5)">
+            <p class="body-text"><strong>8.3 / 10</strong> based on 124 verified ratings. Community scores do not alter the editorial score but help indicate current subscriber sentiment.</p>
+            <div class="dist-bars">
+              <div class="dist-row"><span>5★</span><div class="dist-track"><div class="dist-fill" style="width:62%"></div></div><span>62%</span></div>
+              <div class="dist-row"><span>4★</span><div class="dist-track"><div class="dist-fill" style="width:23%"></div></div><span>23%</span></div>
+              <div class="dist-row"><span>3★</span><div class="dist-track"><div class="dist-fill" style="width:9%"></div></div><span>9%</span></div>
+              <div class="dist-row"><span>2★</span><div class="dist-track"><div class="dist-fill" style="width:4%"></div></div><span>4%</span></div>
+              <div class="dist-row"><span>1★</span><div class="dist-track"><div class="dist-fill" style="width:2%"></div></div><span>2%</span></div>
+            </div>
+            <p class="body-text" style="margin-top:var(--space-3);">Short community comments would appear here, with moderation applied before publication.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Preview</p>
+              <h2>Gallery & feel</h2>
+            </div>
+          </div>
+          <div class="panel" style="padding:var(--space-5)">
+            <p class="body-text">Use this area for safe, on-brand preview imagery or stylized cards that convey the creator's aesthetic without relying on explicit content.</p>
+            <div class="pill-row">
+              <span class="pill">Polished gallery focus</span>
+              <span class="pill">Soft editorial lighting</span>
+              <span class="pill">Consistent color palette</span>
+            </div>
+            <div class="gallery-strip">
+              <div class="thumb"><span>Highlight panel</span><span style="opacity:.8">Hero-style tile, ideal for the strongest current preview.</span></div>
+              <div class="thumb"><span>Gallery slice</span><span style="opacity:.8">Representative collage or stylized card.</span></div>
+              <div class="thumb"><span>Brand touch</span><span style="opacity:.8">Logo, typography, or mood board tile.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside>
+        <div class="section">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Pricing & offers</p>
+              <h2>Entry points</h2>
+            </div>
+          </div>
+          <div class="panel" style="padding:var(--space-5)">
+            <div class="offer-list">
+              <div class="offer-item">
+                <strong>Standard subscription</strong>
+                <p>Currently listed as $9.99 / month with frequent gallery updates.</p>
+              </div>
+              <div class="offer-item">
+                <strong>Trial access</strong>
+                <p>Short-term discounted entry period when available. Mark as inactive when no trial is present.</p>
+              </div>
+              <div class="offer-item">
+                <strong>Bundles & add-ons</strong>
+                <p>Notes for any bundle-style offers or add-on menus relevant to prospective subscribers.</p>
+              </div>
+            </div>
+            <p class="body-text" style="margin-top:var(--space-3);">Replace these placeholders with current pricing and offer information pulled from your approved data sources.</p>
+          </div>
+          <div class="ad-slot"><!-- AD SLOT: sidebar tower --><span>Ad placement — sidebar tower</span><small>Use for a vertical unit aligned with offers & verification content.</small></div>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Sources</p>
+              <h2>Verification & notes</h2>
+            </div>
+          </div>
+          <div class="panel" style="padding:var(--space-5)">
+            <div class="meta-grid">
+              <div>
+                <strong>Review inputs</strong>
+                <p>Summarize what was considered: public presence, stated pricing, update cadence, and curated subscriber feedback.</p>
+              </div>
+              <div>
+                <strong>Verification</strong>
+                <p>Status chips such as “Profile active”, “Offer checked this month”, and “Recent posts verified”.</p>
+              </div>
+              <div>
+                <strong>Review history</strong>
+                <p>Document prior editorial passes and the dates when scores were last updated.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Last updated: 2026‑04‑09 • This page is a template. Replace sample data and ad placeholders with your own editorial inputs and compliant ad snippets.</p>
+      <p style="margin-top:var(--space-2)">Learn more: link this line to a dedicated “How we score creators” methodology page.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const t=document.querySelector('[data-theme-toggle]');
+      const r=document.documentElement;
+      let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+      r.setAttribute('data-theme',d);
+      const render=()=>{
+        t.innerHTML=d==='dark'
+          ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
+          : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+        t.setAttribute('aria-label','Switch to '+(d==='dark'?'light':'dark')+' mode');
+      };
+      render();
+      t.addEventListener('click',()=>{d=d==='dark'?'light':'dark';r.setAttribute('data-theme',d);render();});
+    })();
+  </script>
+</body>
+</html>
