@@ -263,13 +263,12 @@
           <p>Review aggregators benefit from strong filters, visible ratings, and segmented summaries, so this layout puts the score, category, pricing cue, and latest update on each card.</p>
         </div>
         <div class="filter-row" aria-label="Filters">
-          <button class="pill active">All</button>
-          <button class="pill">Top rated</button>
-          <button class="pill">New this week</button>
-          <button class="pill">Trial offer</button>
-          <button class="pill">Premium chat</button>
-          <button class="pill">High value</button>
-        </div>
+  <button class="pill active" data-filter="all">All</button>
+  <button class="pill" data-filter="top">Top rated</button>
+  <button class="pill" data-filter="new">New this week</button>
+  <button class="pill" data-filter="trial">Trial offer</button>
+  <button class="pill" data-filter="value">High value</button>
+</div>
         <div class="review-grid" id="review-grid">
           <article class="card">
             <div class="card-top">
@@ -521,9 +520,7 @@
           )} and a focus on ${creator.taglineShort.toLowerCase()}.
         </p>
         <div class="tag-row">
-          ${creator.tags
-            .map(tag => `<span class="tag">${tag}</span>`)
-            .join('')}
+          ${creator.tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}
         </div>
         <div class="meta-row">
           <span>Last updated ${creator.lastUpdated}</span>
@@ -535,19 +532,67 @@
     });
   }
 
-  function loadCreatorsAndRender() {
+  function applyFilter(filter) {
+    let list = [...creators];
+
+    switch (filter) {
+      case 'top':
+        // Sort by highest editorialScore first
+        list.sort((a, b) => b.editorialScore - a.editorialScore);
+        break;
+      case 'new':
+        // Very simple "new" check: treat anything with 'd' (days) in lastUpdated as newer than 'w' (weeks)
+        list = creators.filter((c) => c.lastUpdated.includes('d'));
+        break;
+      case 'trial':
+        // Has a tag mentioning "trial"
+        list = creators.filter((c) =>
+          c.tags.some((t) => t.toLowerCase().includes('trial'))
+        );
+        break;
+      case 'value':
+        // Has a tag mentioning "value"
+        list = creators.filter((c) =>
+          c.tags.some((t) => t.toLowerCase().includes('value'))
+        );
+        break;
+      case 'all':
+      default:
+        list = [...creators];
+        break;
+    }
+
+    renderCreatorCards(list);
+  }
+
+  function setupFilters() {
+    const buttons = document.querySelectorAll('.filter-row .pill');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // Toggle active state
+        buttons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter || 'all';
+        applyFilter(filter);
+      });
+    });
+  }
+
+  function loadCreatorsAndInit() {
     fetch('creators.json')
       .then((response) => response.json())
       .then((data) => {
         creators = data;
-        renderCreatorCards();
+        applyFilter('all');   // initial render
+        setupFilters();       // wire up filter buttons
       })
       .catch((error) => {
         console.error('Error loading creators:', error);
       });
   }
 
-  document.addEventListener('DOMContentLoaded', loadCreatorsAndRender);
+  document.addEventListener('DOMContentLoaded', loadCreatorsAndInit);
 </script>
 </body>
 </html>
