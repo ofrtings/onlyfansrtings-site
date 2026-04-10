@@ -156,12 +156,32 @@
           </div>
           <div class="panel" style="padding:var(--space-5)">
             <div class="criteria-list">
-              <div class="criterion"><span>Value</span><div class="bar"><i style="width:91%"></i></div><strong>9.1</strong></div>
-              <div class="criterion"><span>Consistency</span><div class="bar"><i style="width:88%"></i></div><strong>8.8</strong></div>
-              <div class="criterion"><span>Responsiveness</span><div class="bar"><i style="width:81%"></i></div><strong>8.1</strong></div>
-              <div class="criterion"><span>Originality</span><div class="bar"><i style="width:90%"></i></div><strong>9.0</strong></div>
-              <div class="criterion"><span>Offer quality</span><div class="bar"><i style="width:84%"></i></div><strong>8.4</strong></div>
-            </div>
+  <div class="criterion">
+    <span>Value</span>
+    <div class="bar"><i id="bar-value"></i></div>
+    <strong id="score-value">9.1</strong>
+  </div>
+  <div class="criterion">
+    <span>Consistency</span>
+    <div class="bar"><i id="bar-consistency"></i></div>
+    <strong id="score-consistency">8.8</strong>
+  </div>
+  <div class="criterion">
+    <span>Responsiveness</span>
+    <div class="bar"><i id="bar-responsiveness"></i></div>
+    <strong id="score-responsiveness">8.1</strong>
+  </div>
+  <div class="criterion">
+    <span>Originality</span>
+    <div class="bar"><i id="bar-originality"></i></div>
+    <strong id="score-originality">9.0</strong>
+  </div>
+  <div class="criterion">
+    <span>Offer quality</span>
+    <div class="bar"><i id="bar-offer"></i></div>
+    <strong id="score-offer">8.4</strong>
+  </div>
+</div>
           </div>
         </div>
 
@@ -307,29 +327,39 @@
   // Same core creator list, but with extra fields for the detail page
   const creators = [
     {
-      id: 'ava-luxe',
-      name: 'Ava Luxe',
-      taglineFull: 'Polished, gallery-led profile with a consistent posting rhythm and clearly framed value for subscribers.',
-      taglineShort: 'Editorial glam • daily updates',
-      pricePerMonth: '$9.99 / month',
-      postsPerWeek: '4–5 posts / week',
-      tagsLine: 'Glam • Editorial • Alt',
-      editorialScore: 87,
-      communityScore: 8.3,
-      communityCount: 124
-    },
-    {
-      id: 'sable-k',
-      name: 'Sable K.',
-      taglineFull: 'Premium, boudoir-leaning content with an emphasis on stylized sets and periodic high-effort drops.',
-      taglineShort: 'Boudoir aesthetic • premium drops',
-      pricePerMonth: '$14.99 / month',
-      postsPerWeek: '3–4 posts / week',
-      tagsLine: 'Boudoir • Premium • Collector tier',
-      editorialScore: 88,
-      communityScore: 8.0,
-      communityCount: 96
-    },
+  id: 'ava-luxe',
+  name: 'Ava Luxe',
+  taglineFull: 'Polished, gallery-led profile with a consistent posting rhythm and clearly framed value for subscribers.',
+  taglineShort: 'Editorial glam • daily updates',
+  pricePerMonth: '$9.99 / month',
+  postsPerWeek: '4–5 posts / week',
+  tagsLine: 'Glam • Editorial • Alt',
+  editorialScore: 87,
+  communityScore: 8.3,
+  communityCount: 124,
+  value: 9.1,
+  consistency: 8.8,
+  responsiveness: 8.1,
+  originality: 9.0,
+  offerQuality: 8.4
+},
+{
+  id: 'sable-k',
+  name: 'Sable K.',
+  taglineFull: 'Premium, boudoir-leaning content with an emphasis on stylized sets and periodic high-effort drops.',
+  taglineShort: 'Boudoir aesthetic • premium drops',
+  pricePerMonth: '$14.99 / month',
+  postsPerWeek: '3–4 posts / week',
+  tagsLine: 'Boudoir • Premium • Collector tier',
+  editorialScore: 88,
+  communityScore: 8.0,
+  communityCount: 96,
+  value: 8.5,
+  consistency: 8.9,
+  responsiveness: 7.8,
+  originality: 8.7,
+  offerQuality: 8.2
+},
     {
       id: 'nina-vale',
       name: 'Nina Vale',
@@ -338,9 +368,14 @@
       pricePerMonth: '$7.99 / month',
       postsPerWeek: '3–5 posts / week',
       tagsLine: 'Soft • Custom • Value-forward',
-      editorialScore: 84,
-      communityScore: 7.9,
-      communityCount: 88
+  editorialScore: 88,
+  communityScore: 8.0,
+  communityCount: 96,
+  value: 8.5,
+  consistency: 8.9,
+  responsiveness: 7.8,
+  originality: 8.7,
+  offerQuality: 8.2
     },
     {
       id: 'lena-noir',
@@ -352,7 +387,12 @@
       tagsLine: 'Alt • Curated • Editorial',
       editorialScore: 89,
       communityScore: 8.5,
-      communityCount: 73
+      communityCount: 73,
+      value: 8.5,
+      consistency: 8.9,
+      responsiveness: 7.8,
+      originality: 8.7,
+      offerQuality: 8.2
     },
     {
       id: 'iris-v',
@@ -364,7 +404,12 @@
       tagsLine: 'Lifestyle • Value • Chat-friendly',
       editorialScore: 81,
       communityScore: 7.8,
-      communityCount: 52
+      communityCount: 52,
+       value: 8.5,
+      consistency: 8.9,
+      responsiveness: 7.8,
+      originality: 8.7,
+      offerQuality: 8.2
     }
   ];
 
@@ -398,6 +443,26 @@
     if (communityEl) {
       communityEl.textContent = `Community ${creator.communityScore.toFixed(1)} / 10 • ${creator.communityCount} ratings`;
     }
+      function updateCriteria(creator) {
+    // Helper to set one bar + score
+    function setCriterion(barId, scoreId, value) {
+      const barEl = document.getElementById(barId);
+      const scoreEl = document.getElementById(scoreId);
+      if (!barEl || !scoreEl) return;
+
+      const clamped = Math.max(0, Math.min(10, value || 0)); // keep within 0–10
+      const percent = (clamped / 10) * 100;
+
+      barEl.style.width = percent + '%';
+      scoreEl.textContent = clamped.toFixed(1);
+    }
+
+    setCriterion('bar-value', 'score-value', creator.value);
+    setCriterion('bar-consistency', 'score-consistency', creator.consistency);
+    setCriterion('bar-responsiveness', 'score-responsiveness', creator.responsiveness);
+    setCriterion('bar-originality', 'score-originality', creator.originality);
+    setCriterion('bar-offer', 'score-offer', creator.offerQuality);
+  }
   }
 
   document.addEventListener('DOMContentLoaded', loadCreatorFromQuery);
