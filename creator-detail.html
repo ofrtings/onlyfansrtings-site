@@ -324,94 +324,7 @@
     })();
   </script>
   <script>
-  // Creator data with per-criterion scores
-  const creators = [
-    {
-      id: 'ava-luxe',
-      name: 'Ava Luxe',
-      taglineFull: 'Polished, gallery-led profile with a consistent posting rhythm and clearly framed value for subscribers.',
-      taglineShort: 'Editorial glam • daily updates',
-      pricePerMonth: '$9.99 / month',
-      postsPerWeek: '4–5 posts / week',
-      tagsLine: 'Glam • Editorial • Alt',
-      editorialScore: 87,
-      communityScore: 8.3,
-      communityCount: 124,
-      value: 9.1,
-      consistency: 8.8,
-      responsiveness: 8.1,
-      originality: 9.0,
-      offerQuality: 8.4
-    },
-    {
-      id: 'sable-k',
-      name: 'Sable K.',
-      taglineFull: 'Premium, boudoir-leaning content with an emphasis on stylized sets and periodic high-effort drops.',
-      taglineShort: 'Boudoir aesthetic • premium drops',
-      pricePerMonth: '$14.99 / month',
-      postsPerWeek: '3–4 posts / week',
-      tagsLine: 'Boudoir • Premium • Collector tier',
-      editorialScore: 88,
-      communityScore: 8.0,
-      communityCount: 96,
-      value: 8.5,
-      consistency: 8.9,
-      responsiveness: 7.8,
-      originality: 8.7,
-      offerQuality: 8.2
-    },
-    {
-      id: 'nina-vale',
-      name: 'Nina Vale',
-      taglineFull: 'Soft editorial presentation, with a focus on custom requests and intimate-feeling updates.',
-      taglineShort: 'Soft editorial • custom content',
-      pricePerMonth: '$7.99 / month',
-      postsPerWeek: '3–5 posts / week',
-      tagsLine: 'Soft • Custom • Value-forward',
-      editorialScore: 84,
-      communityScore: 7.9,
-      communityCount: 88,
-      value: 8.2,
-      consistency: 8.4,
-      responsiveness: 7.9,
-      originality: 8.6,
-      offerQuality: 8.0
-    },
-    {
-      id: 'lena-noir',
-      name: 'Lena Noir',
-      taglineFull: 'Moody, alt-leaning sets with a curated visual identity and slower, deliberate posting cadence.',
-      taglineShort: 'Moody alt • curated shoots',
-      pricePerMonth: '$11.99 / month',
-      postsPerWeek: '3 posts / week',
-      tagsLine: 'Alt • Curated • Editorial',
-      editorialScore: 89,
-      communityScore: 8.5,
-      communityCount: 73,
-      value: 8.8,
-      consistency: 9.0,
-      responsiveness: 8.0,
-      originality: 9.2,
-      offerQuality: 8.5
-    },
-    {
-      id: 'iris-v',
-      name: 'Iris V.',
-      taglineFull: 'Lifestyle-oriented content with behind-the-scenes moments and approachable price positioning.',
-      taglineShort: 'Lifestyle • behind-the-scenes focus',
-      pricePerMonth: '$6.99 / month',
-      postsPerWeek: '2–3 posts / week',
-      tagsLine: 'Lifestyle • Value • Chat-friendly',
-      editorialScore: 81,
-      communityScore: 7.8,
-      communityCount: 52,
-      value: 8.0,
-      consistency: 7.9,
-      responsiveness: 7.6,
-      originality: 7.8,
-      offerQuality: 7.7
-    }
-  ];
+  let creators = [];
 
   function updateCriteria(creator) {
     function setCriterion(barId, scoreId, value) {
@@ -433,16 +346,7 @@
     setCriterion('bar-offer', 'score-offer', creator.offerQuality);
   }
 
-  function loadCreatorFromQuery() {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id'); // e.g. ?id=ava-luxe
-    // URLSearchParams.get('id') returns the id string or null if missing. [web:134][web:138][web:150]
-
-    let creator = creators.find((c) => c.id === id);
-    if (!creator) {
-      creator = creators[0];
-    }
-
+  function fillCreatorDetail(creator) {
     const nameEl = document.getElementById('creator-name');
     const taglineEl = document.getElementById('creator-tagline');
     const priceEl = document.getElementById('creator-price');
@@ -464,7 +368,31 @@
     updateCriteria(creator);
   }
 
-  document.addEventListener('DOMContentLoaded', loadCreatorFromQuery);
+  function loadCreatorFromQuery() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    let creator = creators.find((c) => c.id === id);
+    if (!creator) {
+      creator = creators[0];
+    }
+
+    fillCreatorDetail(creator);
+  }
+
+  function initCreatorDetail() {
+    fetch('creators.json')
+      .then((response) => response.json())
+      .then((data) => {
+        creators = data;
+        loadCreatorFromQuery();
+      })
+      .catch((error) => {
+        console.error('Error loading creators:', error);
+      });
+  }
+
+  document.addEventListener('DOMContentLoaded', initCreatorDetail);
 </script>
 </body>
 </html>
